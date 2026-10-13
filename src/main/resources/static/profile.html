@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - Job Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Job Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jobs.html">Jobs</a>
+        </li>
+        <li class="nav-item authenticated recruiter-only">
+          <a class="nav-link" href="/my-jobs.html">My Jobs</a>
+        </li>
+        <li class="nav-item authenticated admin-only">
+          <a class="nav-link" href="/admin.html">Admin</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown authenticated">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+            <span id="username">User</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item active" href="/profile.html">Profile</a></li>
+            <li><a class="dropdown-item authenticated user-only" href="/applications.html">My Applications</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-4">
+  <h1 class="page-header">My Profile</h1>
+
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Account Information</h5>
+        </div>
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <div class="avatar-circle mx-auto mb-3">
+              <span class="avatar-text" id="avatar-initials">U</span>
+            </div>
+            <h4 id="profile-username">Username</h4>
+            <p class="text-muted" id="profile-email">email@example.com</p>
+            <div class="badge bg-primary" id="profile-role">Role</div>
+          </div>
+
+          <div class="d-grid">
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+              <i class="fas fa-key"></i> Change Password
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role-specific card for recruiters -->
+      <div class="card mt-4 recruiter-only" style="display: none;">
+        <div class="card-header">
+          <h5 class="mb-0">Recruiter Profile</h5>
+        </div>
+        <div class="card-body">
+          <p class="mb-2"><strong>Company:</strong> <span id="recruiter-company">Loading...</span></p>
+          <p class="mb-2"><strong>Position:</strong> <span id="recruiter-position">Loading...</span></p>
+          <p class="mb-2"><strong>Phone:</strong> <span id="recruiter-phone">Loading...</span></p>
+          <div class="d-grid mt-3">
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#recruiterProfileModal">
+              <i class="fas fa-edit"></i> Edit Recruiter Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Activity Summary</h5>
+        </div>
+        <div class="card-body">
+          <!-- User Activity -->
+          <div class="user-only" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5>Your Applications</h5>
+              <a href="/applications.html" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+
+            <div id="user-applications-summary">
+              <div class="loading-spinner">
+                <div class="spinner-border spinner-border-sm text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class="ms-2">Loading your applications...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recruiter Activity -->
+          <div class="recruiter-only" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5>Your Job Listings</h5>
+              <a href="/my-jobs.html" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+
+            <div id="recruiter-jobs-summary">
+              <div class="loading-spinner">
+                <div class="spinner-border spinner-border-sm text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class="ms-2">Loading your job listings...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Activity -->
+          <div class="admin-only" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5>System Overview</h5>
+              <a href="/admin.html" class="btn btn-sm btn-outline-primary">Admin Dashboard</a>
+            </div>
+
+            <div id="admin-summary">
+              <div class="loading-spinner">
+                <div class="spinner-border spinner-border-sm text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class="ms-2">Loading system stats...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="change-password-form">
+          <div class="mb-3">
+            <label for="current-password" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="current-password" required>
+          </div>
+          <div class="mb-3">
+            <label for="new-password" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="new-password" required minlength="6">
+            <div class="form-text">Password must be at least 6 characters long.</div>
+          </div>
+          <div class="mb-3">
+            <label for="confirm-password" class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirm-password" required>
+          </div>
+          <div id="password-error" class="alert alert-danger" style="display: none;"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="save-password-btn">Update Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recruiter Profile Modal -->
+<div class="modal fade" id="recruiterProfileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Recruiter Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="recruiter-profile-form">
+          <input type="hidden" id="recruiter-id">
+          <div class="mb-3">
+            <label for="recruiter-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="recruiter-name" required>
+          </div>
+          <div class="mb-3">
+            <label for="recruiter-email-input" class="form-label">Email</label>
+            <input type="email" class="form-control" id="recruiter-email-input" required>
+          </div>
+          <div class="mb-3">
+            <label for="recruiter-company-input" class="form-label">Company</label>
+            <input type="text" class="form-control" id="recruiter-company-input" required>
+          </div>
+          <div class="mb-3">
+            <label for="recruiter-position-input" class="form-label">Position</label>
+            <input type="text" class="form-control" id="recruiter-position-input" required>
+          </div>
+          <div class="mb-3">
+            <label for="recruiter-phone-input" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="recruiter-phone-input" required>
+          </div>
+          <div id="recruiter-profile-error" class="alert alert-danger" style="display: none;"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="save-recruiter-profile-btn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light mt-5 py-3">
+  <div class="container text-center">
+    <span class="text-muted">© 2025 Job Portal. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Auth Service -->
+<script src="js/auth.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+<!-- Profile JS -->
+<script src="js/profile.js"></script>
+</body>
+</html>

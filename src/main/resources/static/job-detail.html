@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details - Job Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Job Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jobs.html">Jobs</a>
+        </li>
+        <!-- Authenticated menu items will be shown/hidden by JavaScript -->
+        <li class="nav-item authenticated recruiter-only" style="display: none;">
+          <a class="nav-link" href="/my-jobs.html">My Jobs</a>
+        </li>
+        <li class="nav-item authenticated admin-only" style="display: none;">
+          <a class="nav-link" href="/admin.html">Admin</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item unauthenticated">
+          <a class="nav-link" href="/login.html">Login</a>
+        </li>
+        <li class="nav-item unauthenticated">
+          <a class="nav-link" href="/register.html">Register</a>
+        </li>
+        <li class="nav-item dropdown authenticated" style="display: none;">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+            <span id="username">User</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile.html">Profile</a></li>
+            <li><a class="dropdown-item authenticated user-only" href="/applications.html">My Applications</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-4">
+  <div id="job-detail-container">
+    <!-- Job details will be loaded here dynamically -->
+    <div class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light mt-5 py-3">
+  <div class="container text-center">
+    <span class="text-muted">© 2025 Job Portal. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Auth Service -->
+<script src="js/auth.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+<!-- Job Detail JS -->
+<script src="js/job-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Job Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Job Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jobs.html">Jobs</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/login.html">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/register.html">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div id="error-container"></div>
+
+      <div class="form-container">
+        <h2 class="text-center mb-4">Register</h2>
+
+        <form id="register-form">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" required minlength="3" maxlength="20">
+            <div class="form-text">Username must be between 3 and 20 characters.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" required minlength="6">
+            <div class="form-text">Password must be at least 6 characters long.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="confirm-password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm-password" required>
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="is-recruiter">
+            <label class="form-check-label" for="is-recruiter">Register as a Recruiter</label>
+          </div>
+
+          <!-- Recruiter fields - will be shown/hidden with JavaScript -->
+          <div id="recruiter-fields" style="display: none;">
+            <div class="mb-3">
+              <label for="company" class="form-label">Company Name *</label>
+              <input type="text" class="form-control" id="company">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone">
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+
+          <div class="text-center mt-3">
+            <p>Already have an account? <a href="/login.html">Login</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light py-3">
+  <div class="container text-center">
+    <span class="text-muted">© 2025 Job Portal. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Auth Service -->
+<script src="js/auth.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+<!-- Script to toggle recruiter fields -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const recruiterCheckbox = document.getElementById('is-recruiter');
+    const recruiterFields = document.getElementById('recruiter-fields');
+    const companyField = document.getElementById('company');
+
+    recruiterCheckbox.addEventListener('change', function() {
+      recruiterFields.style.display = this.checked ? 'block' : 'none';
+      companyField.required = this.checked;
+    });
+  });
+</script>
+</body>
+</html>

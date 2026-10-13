@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for Job - Job Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Job Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jobs.html">Jobs</a>
+        </li>
+        <li class="nav-item authenticated recruiter-only">
+          <a class="nav-link" href="/my-jobs.html">My Jobs</a>
+        </li>
+        <li class="nav-item authenticated admin-only">
+          <a class="nav-link" href="/admin.html">Admin</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown authenticated">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+            <span id="username">User</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile.html">Profile</a></li>
+            <li><a class="dropdown-item authenticated user-only" href="/applications.html">My Applications</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-4">
+  <div id="job-header" class="mb-4">
+    <!-- Job details will be loaded here -->
+    <div class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="mb-0">Submit Your Application</h4>
+        </div>
+        <div class="card-body">
+          <form id="application-form">
+            <div class="alert alert-info mb-4">
+              <i class="fas fa-info-circle"></i>
+              Please fill out the form below to apply for this position. All fields marked with * are required.
+            </div>
+
+            <div class="mb-3">
+              <label for="candidate-name" class="form-label">Full Name *</label>
+              <input type="text" class="form-control" id="candidate-name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="candidate-email" class="form-label">Email Address *</label>
+              <input type="email" class="form-control" id="candidate-email" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="candidate-phone" class="form-label">Phone Number *</label>
+              <input type="tel" class="form-control" id="candidate-phone" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="cover-letter" class="form-label">Cover Letter *</label>
+              <textarea class="form-control" id="cover-letter" rows="6" required
+                        placeholder="Introduce yourself and explain why you're a good fit for this position..."></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="resume-url" class="form-label">Resume URL (Optional)</label>
+              <input type="url" class="form-control" id="resume-url" placeholder="Link to your resume on Google Drive, Dropbox, etc.">
+              <div class="form-text">If you have your resume online, provide a link here.</div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="javascript:history.back();" class="btn btn-outline-secondary me-md-2">Cancel</a>
+              <button type="submit" class="btn btn-primary">Submit Application</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light mt-5 py-3">
+  <div class="container text-center">
+    <span class="text-muted">© 2025 Job Portal. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Auth Service -->
+<script src="js/auth.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+<!-- Apply Job JS -->
+<script src="js/apply-job.js"></script>
+</body>
+</html>

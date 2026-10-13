@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Find Your Dream Job</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Job Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jobs.html">Jobs</a>
+                </li>
+                <!-- Authenticated menu items will be shown/hidden by JavaScript -->
+                <li class="nav-item authenticated recruiter-only" style="display: none;">
+                    <a class="nav-link" href="/my-jobs.html">My Jobs</a>
+                </li>
+                <li class="nav-item authenticated admin-only" style="display: none;">
+                    <a class="nav-link" href="/admin.html">Admin</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item unauthenticated">
+                    <a class="nav-link" href="/login.html">Login</a>
+                </li>
+                <li class="nav-item unauthenticated">
+                    <a class="nav-link" href="/register.html">Register</a>
+                </li>
+                <li class="nav-item dropdown authenticated" style="display: none;">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                        <span id="username">User</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/profile.html">Profile</a></li>
+                        <li><a class="dropdown-item authenticated user-only" href="/applications.html">My Applications</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <h1 class="animated-element">Find Your Perfect Job</h1>
+                <p class="lead animated-element delay-1">Connect with thousands of employers and discover opportunities that match your skills and career goals.</p>
+                <div class="hero-buttons animated-element delay-2">
+                    <a href="/jobs.html" class="btn btn-primary btn-lg me-3">Browse Jobs</a>
+                    <a href="/register.html" class="btn btn-outline-primary btn-lg unauthenticated">Join Now</a>
+                </div>
+                <div class="hero-stats animated-element delay-3">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Jobs Posted</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5K+</span>
+                        <span class="stat-label">Companies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">20K+</span>
+                        <span class="stat-label">Users</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image animated-element">
+                    <img src="https://cdn.pixabay.com/photo/2018/03/10/12/00/teamwork-3213924_1280.jpg" alt="Job seekers" class="img-fluid rounded-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Jobs Section -->
+<section class="featured-jobs py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2>Featured Jobs</h2>
+            <p class="text-muted">Discover new opportunities from top companies</p>
+        </div>
+
+        <div class="row g-4" id="featured-jobs-container">
+            <!-- Jobs will be dynamically loaded here -->
+            <div class="col-12 text-center">
+                <div class="loading-spinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading jobs...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Searching for awesome opportunities...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/jobs.html" class="btn btn-primary">Browse All Jobs</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light-gradient">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2>Why Choose Us</h2>
+            <p class="text-muted">Our platform offers everything you need for your job search or recruitment</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Easy Job Search</h3>
+                        <p>Find the perfect job with our powerful search tools. Filter by location, salary, job type, and more.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Recruiter Tools</h3>
+                        <p>Post jobs, manage applications, and find the best candidates for your organization with ease.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Simple Applications</h3>
+                        <p>Apply to jobs with just a few clicks. Create your profile once and use it for multiple applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2>Popular Job Categories</h2>
+            <p class="text-muted">Explore jobs in your field of interest</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=tech" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4>Technology</h4>
+                            <span class="job-count">2,845 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=finance" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Finance</h4>
+                            <span class="job-count">1,542 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=healthcare" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h4>Healthcare</h4>
+                            <span class="job-count">1,832 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=education" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Education</h4>
+                            <span class="job-count">946 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=marketing" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h4>Marketing</h4>
+                            <span class="job-count">1,463 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=design" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4>Design</h4>
+                            <span class="job-count">1,251 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=engineering" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Engineering</h4>
+                            <span class="job-count">2,154 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="/jobs.html?category=legal" class="category-card">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="category-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h4>Legal</h4>
+                            <span class="job-count">742 Jobs</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-container text-center">
+            <h2>Ready to start your career journey?</h2>
+            <p class="lead mb-4">Join thousands of job seekers who have found their perfect job through our platform.</p>
+            <div class="cta-buttons">
+                <a href="/register.html" class="btn btn-primary btn-lg me-3 unauthenticated">Create Account</a>
+                <a href="/jobs.html" class="btn btn-outline-primary btn-lg">Browse Jobs</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer mt-auto py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5>Job Portal</h5>
+                <p>Find your dream job or the perfect candidate with our comprehensive job portal platform.</p>
+                <div class="social-icons">
+                    <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5>For Job Seekers</h5>
+                <ul class="footer-links">
+                    <li><a href="/jobs.html">Browse Jobs</a></li>
+                    <li><a href="/register.html">Create Account</a></li>
+                    <li><a href="/applications.html">My Applications</a></li>
+                    <li><a href="#">Career Advice</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5>For Recruiters</h5>
+                <ul class="footer-links">
+                    <li><a href="/register.html">Post a Job</a></li>
+                    <li><a href="/my-jobs.html">Manage Jobs</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5>Company</h5>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2">
+                <h5>Contact</h5>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope me-2"></i> info@jobportal.com</li>
+                    <li><i class="fas fa-phone me-2"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i> 123 Main St, City</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="mt-4 mb-3">
+        <div class="text-center">
+            <p class="mb-0">© 2025 Job Portal. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Auth Service -->
+<script src="js/auth.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+<!-- Featured Jobs Script -->
+<script>
+    // Function to load featured jobs
+    async function loadFeaturedJobs() {
+        const container = document.getElementById('featured-jobs-container');
+
+        try {
+            // Fetch jobs from API
+            const response = await fetch('/api/jobs?size=3&sort=postDate,desc');
+            const data = await response.json();
+
+            // Get jobs from response
+            const jobs = data.content || [];
+
+            // Clear loading spinner
+            container.innerHTML = '';
+
+            // If no jobs found, show a fun message
+            if (jobs.length === 0) {
+                container.innerHTML = `
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="fas fa-search mb-4"></i>
+                        <h3>Hmm, seems a bit quiet here!</h3>
+                        <p>The jobs are playing hide and seek, and they're really good at hiding! Maybe they're all on vacation or taking a coffee break.</p>
+                        <p>Check back soon, or be the first to post an amazing job opportunity!</p>
+                        <a href="/register.html" class="btn btn-primary mt-3 unauthenticated">Post a Job</a>
+                    </div>
+                </div>
+            `;
+                return;
+            }
+
+            // Display each job
+            jobs.forEach(job => {
+                // Format date
+                const postDate = new Date(job.postDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                // Format salary with commas
+                const minSalary = job.minSalary ? job.minSalary.toLocaleString() : 'N/A';
+                const maxSalary = job.maxSalary ? job.maxSalary.toLocaleString() : 'N/A';
+
+                // Create required skills tags
+                const skillsHtml = job.requiredSkills && job.requiredSkills.length > 0
+                    ? job.requiredSkills.slice(0, 3).map(skill => `<span class="job-tag">${skill}</span>`).join('')
+                    : '<span class="job-tag">No specific skills listed</span>';
+
+                // Create the job card
+                const jobHtml = `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 animated-element">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title">${job.title}</h5>
+                                <span class="badge bg-primary">${job.employmentType || 'Full-time'}</span>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">${job.company}</h6>
+                            <p class="card-text"><i class="fas fa-map-marker-alt"></i> ${job.location || 'Remote'}</p>
+                            <p class="card-text"><i class="fas fa-dollar-sign"></i> $${minSalary} - $${maxSalary}</p>
+                            <p class="card-text"><i class="fas fa-calendar"></i> Posted: ${postDate}</p>
+                            <div class="job-skills mt-3">
+                                ${skillsHtml}
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a href="/job-detail.html?id=${job.id}" class="btn btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                // Append to the container
+                container.innerHTML += jobHtml;
+            });
+
+        } catch (error) {
+            console.error('Error loading featured jobs:', error);
+
+            // Show error message with a humorous touch
+            container.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    <i class="fas fa-exclamation-circle fa-2x mb-3"></i>
+                    <h4>Well, this is awkward...</h4>
+                    <p>Our job-finding hamsters seem to be on strike today! 🐹</p>
+                    <p>Please try again later when they've had their coffee and sunflower seeds.</p>
+                </div>
+            </div>
+        `;
+        }
+    }
+
+    // Load featured jobs when the page loads
+    document.addEventListener('DOMContentLoaded', loadFeaturedJobs);
+</script>
+</body>
+</html>
