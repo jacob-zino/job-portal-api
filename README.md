@@ -1,5 +1,7 @@
 # Job Portal API
 
+[![CI](https://github.com/jacob-zino/job-portal-api/actions/workflows/ci.yml/badge.svg)](https://github.com/jacob-zino/job-portal-api/actions/workflows/ci.yml)
+
 A Spring Boot REST API for a job portal: recruiters post jobs, candidates apply, and admins manage users. It is secured with Spring Security and JWT, uses MongoDB for storage, and ships with a small HTML/JavaScript front end and generated API docs.
 
 > University project built by a team of two (2025): **Jacob Zino** ([@jacob-zino](https://github.com/jacob-zino)) and **Magaly El Khoury** ([@magalykhoury](https://github.com/magalykhoury)).
